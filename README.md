@@ -9,6 +9,8 @@ The killer feature in professional edition is the ability to "Build Panorama" (a
 
 ![Figure: Agisoft Metashape Standard has the "Build Panorama" greyed out](./images/metashape_standard_missing_build_panorama.png)
 
+Note that Agisoft Metashape Standard has the "Build Panorama" greyed out.
+
 ### Making the best use of the free 30 day trials
 
 For each machine you may obtain:
@@ -31,7 +33,7 @@ Image processing steps you should perform BEFORE starting your 30 day profession
 
 These preliminary processing steps are necessary before building the panorama regardless, so best to get it done on the limited version of the software first so you can make maximum usage of the professional edition to build panoramas while you have it.
 
-See [Student Licenses](#student-licences) for how to attain a perpetual licence in the case that you require more usage past the 60 days of free trials.
+See __Student Licenses__ for how to attain a perpetual licence in the case that you require more usage past the 60 days of free trials.
 
 ### Project Size
 Realistically you probably can't fit all of your source data into a single project and have it build successfully without crashing. I found the sweetspot to be around 1000 images on a modern desktop (i5-14600K, RTX4060Ti 16GB, 32GB RAM, comparable results on a silicon macbook with M1 Pro chip but with slower processing due to lacking GPU acceleration).
