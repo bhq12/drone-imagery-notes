@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "metashape-automater-2"
+version = "0.1.0"
+description = ""
+authors = ["bhq12"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+pyuserinput = "^0.1.11"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

@@ -1,0 +1,165 @@
+on createExport(segment_number, x_1, x_2, y_1, y_2)
+	tell application "Metashape" to activate
+	delay 0.5 -- Allows time for the application to come to the front
+
+	tell application "System Events"
+		tell process "Metashape"
+			-- Click File > Export > Export Orthomosaic...
+			set developMenu to menu bar item "File" of menu bar 1
+			set allUIElements to entire contents of developMenu
+			repeat with anElement in allUIElements
+				try
+					if name of anElement is "Export Panorama..." then
+						click anElement
+						exit repeat
+					end if
+				end try
+			end repeat
+			delay 0.5
+			tell application "System Events" to keystroke "segment_" & segment_number & "_r7_north"
+			delay 0.5
+			tell application "System Events" to keystroke return
+			delay 0.5
+
+			set setupBoundariesCheckbox to checkbox "Setup boundaries:" of group "Region" of window "Export Panorama - TIFF"
+			if (value of setupBoundariesCheckbox as boolean) is false
+				click setupBoundariesCheckbox
+				delay 0.1
+			end if
+
+			delay 1
+
+			set the clipboard to x_1
+
+			do shell script "cliclick c:756,458"
+			delay 0.1
+			do shell script "cliclick c:756,458"
+			delay 0.1
+			do shell script "cliclick c:756,458"
+			delay 0.1
+			keystroke x_1
+			delay 0.1
+
+			set the clipboard to x_2
+
+			do shell script "cliclick c:850,458"
+			delay 0.1
+			do shell script "cliclick c:850,458"
+			delay 0.1
+			do shell script "cliclick c:850,458"
+			delay 0.1
+			keystroke x_2
+			delay 0.1
+
+			set the clipboard to y_1
+
+			do shell script "cliclick c:756,505"
+			delay 0.1
+			do shell script "cliclick c:756,505"
+			delay 0.1
+			do shell script "cliclick c:756,505"
+			delay 0.1
+			keystroke y_1
+			delay 0.1
+
+			set the clipboard to y_2
+
+			do shell script "cliclick c:850,505"
+			delay 0.1
+			do shell script "cliclick c:850,505"
+			delay 0.1
+			do shell script "cliclick c:850,505"
+			delay 0.1
+			keystroke y_2
+			delay 0.1
+
+			keystroke return
+			delay 4
+		end tell
+	end tell
+end createExport
+
+
+on max(number1, number2)
+    if number1 > number2 then
+        return number1
+    else
+        return number2
+    end if
+end max
+
+on min(number1, number2)
+    if number1 < number2 then
+        return number1
+    else
+        return number2
+    end if
+end min
+
+on abs(number1)
+    if number1 < 0 then
+        return -number1
+    else
+        return number2
+    end if
+end abs
+
+set boundary_x_1_2021 to 148.493164
+set boundary_x_2_2021 to 148.503001
+set boundary_y_1_2021 to -23.439794
+set boundary_y_2_2021 to -23.427245
+
+set boundary_x_1_2023 to 148.496457
+set boundary_x_2_2023 to 148.501442
+set boundary_y_1_2023 to -23.439967
+set boundary_y_2_2023 to -23.432353
+
+set inside_x_1 to max(boundary_x_1_2021, boundary_x_1_2023)
+set inside_x_2 to min(boundary_x_2_2021, boundary_x_2_2023)
+set inside_y_1 to max(boundary_y_1_2021, boundary_y_1_2023)
+set inside_y_2 to min(boundary_x_2_2021, boundary_y_2_2023)
+
+log "inside_x_1"
+log inside_x_1
+log "inside_x_2"
+log inside_x_2
+log "inside_y_1"
+log inside_y_1
+log "inside_y_2"
+log inside_y_2
+
+set delta_x to abs(inside_x_1 - inside_x_2) / 10
+set delta_y to abs(inside_y_1 - inside_y_2) / 10
+
+log "delta_x"
+log delta_x
+
+log "delta_y"
+log delta_y
+
+
+set segment_number to 0
+
+set x_1_value to inside_x_1
+set x_2_value to inside_x_1 + delta_x
+
+set y_1_value to inside_y_1
+set y_2_value to inside_y_1 + delta_y
+
+repeat 10 times
+	repeat 10 times
+		set segment_number to segment_number + 1
+		log "segment: " & segment_number
+ 		log "x_1 :" & x_1_value & ", x_2:" & x_2_value & ", y_1: " & y_1_value & "y_2: " & y_2_value
+		createExport(segment_number, x_1_value, x_2_value, y_1_value, y_2_value)
+		set x_1_value to x_1_value + delta_x
+		set x_2_value to x_2_value + delta_x
+	end repeat
+	set x_1_value to inside_x_1
+	set x_2_value to inside_x_1 + delta_x
+	set y_1_value to y_1_value + delta_y
+	set y_2_value to y_2_value + delta_y
+end repeat
+
+
+
