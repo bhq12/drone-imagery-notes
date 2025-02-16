@@ -39,7 +39,7 @@ See __Student Licenses__ for how to attain a perpetual licence in the case that 
 
 In order to export the orthomosaic in a number of smaller segments (eg 100 smaller identically-sized sections of the total larger mosaic), typically you would have to manually click File -> Export -> Export Panorama -> Input a file name -> Setup Boundaries (these control the segment of the panorama you're exporting) -> export.
 
-Luckily, I was able to automate this via naïve UI clicker scripts. I have made two versions of this script, one for MacOS and one for Ubuntu/linux (if you end up re-creating this for Windows please raise a pull request!).
+Luckily, I was able to automate this via naïve UI clicker scripts (found in ./metashape_automation/) I have made two versions of this script, one for MacOS and one for Ubuntu/linux (if you end up re-creating this for Windows please raise a pull request!).
 
 NOTE: If re-using these scripts, you may need to adjust the pixel locations of specific buttons in the control workflow, I've labeled them as best I can but you'll have to dig into the script and adjust for your specific screen. (Hopefully) It should work out-of-the-box for 1080p screens in Ubuntu and 3024x1964 (14 inch macbook pro screen resolution) screens in MacOS.
 
